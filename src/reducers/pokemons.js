@@ -1,7 +1,8 @@
-import { SET_POKEMONS } from "../actions/types";
+import { SET_POKEMONS, SET_LOADING } from "../actions/types";
 
 const initialState = {
   pokemons: [],
+  loading: false,
 };
 
 export const pokemonsReducer = (state = initialState, action) => {
@@ -10,6 +11,12 @@ export const pokemonsReducer = (state = initialState, action) => {
     return {
       ...state,
       pokemons: payload,
+    };
+  }
+  if (type === SET_LOADING) {
+    return {
+      ...state,
+      loading: payload,
     };
   }
   return state;

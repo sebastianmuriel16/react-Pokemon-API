@@ -15,9 +15,22 @@ const PokemonCard = ({ pokemon }) => {
       <Meta
         description={
           <ul className="Pokemon-types">
+            <p>Types: </p>
             {pokemon.types.map((type) => (
               <li className="Pokemon-type" key={type.type.name}>
                 {type.type.name}
+              </li>
+            ))}
+          </ul>
+        }
+      />
+      <Meta
+        description={
+          <ul className="Pokemon-abilities">
+            <p>Abilities: </p>
+            {pokemon.abilities.map((ability) => (
+              <li className="Pokemon-ability" key={ability.ability.name}>
+                {ability.ability.name}
               </li>
             ))}
           </ul>
