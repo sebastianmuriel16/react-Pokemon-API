@@ -5,13 +5,17 @@ import { PokemonList } from "./components/PokemonList";
 import logo from "./statics/podekux.svg";
 import "./App.css";
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { getPokemonsWithDetails, setLoading } from "./actions";
 import { getPokemons } from "./services/pokemons";
 
 function App() {
-  const pokemons = useSelector((state) => state.pokemons);
-  const loading = useSelector((state) => state.loading);
+  const pokemons = useSelector((state) =>
+    state.getIn(["data", "pokemons"])
+  ).toJS();
+  const loading = useSelector((state) =>
+    state.getIn(["ui", "loading"], shallowEqual)
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,7 +26,7 @@ function App() {
 
       setTimeout(() => {
         dispatch(setLoading(false));
-      }, 800);
+      }, 500);
     };
 
     fetchPokemons();
