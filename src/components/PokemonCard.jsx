@@ -3,12 +3,13 @@ import { StarButton } from "./StarButton";
 const { Meta } = Card;
 import "./PokemonCard.css";
 import { useDispatch } from "react-redux";
+import { setFavorite } from "../slices/data.slice";
 
 const PokemonCard = ({ pokemon }) => {
   const dispatch = useDispatch();
 
   const handleFavorite = () => {
-    dispatch({ type: "SET_FAVORITE", payload: pokemon.id });
+    dispatch(setFavorite(pokemon.id));
   };
 
   return (
